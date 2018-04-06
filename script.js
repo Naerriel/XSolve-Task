@@ -1,7 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-  console.log(MyData);
-  render(MyData);
-});
+const maxResultsOnPage = 5;
 
 const makeCell = function(text){
   return `<td>${text}</td>`;
@@ -29,10 +26,32 @@ const getTableHeaderHTML = function() {
   `;
 }
 
-const render = function(filteredData) {
+const renderPage = function(filteredData, pageNum) {
   let code = getTableHeaderHTML();
-  for(let number in filteredData){
-    code += getTableRowHTML(filteredData[number]);
+  for(let nr = (pageNum - 1) * maxResultsOnPage;
+    nr < pageNum * maxResultsOnPage && nr < filteredData.length;
+    nr++){
+    code += getTableRowHTML(filteredData[nr]);
   }
   $(".usersDataTable").html(code);
 }
+
+const renderPagination = function(numOfElements) {
+  const numOfPages = Math.ceil(numOfElements / maxResultsOnPage);
+  let code = "<a>&laquo</a>";
+  for(let pageNum = 1; pageNum <= numOfPages; pageNum++){
+    code += `<a>${pageNum}</a>`;
+  }
+  code += "<a>&raquo</a>";
+  $(".pagination").html(code);
+}
+
+const render = function(filteredData) {
+  renderPage(filteredData, 1);
+  renderPagination(filteredData.length)
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  render(MyData);
+});
+

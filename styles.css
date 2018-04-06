@@ -25,12 +25,51 @@ header {
     vertical-align: center;
 }
 
+.tableWrapper{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    padding-bottom: 1.125em;
+    margin-top: 20px;
+}
+
+.pagination{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
 .usersDataTable{
-    margin: 50px auto;
     border-collapse: collapse;
 }
 
 .usersDataTable th, .usersDataTable td{
     border: 1px solid #dddddd;
     padding: 8px;
+}
+
+.pagination{
+    background-color: grey;
+    color: white;
+    position: relative;
+    height: 30px;
+    text-align: center;
+}
+
+.pagination a {
+    width: 30px;
+    margin: 5px;
+    vertical-align: center;
+    padding: 20px 16px;
+    position: relative;
+    top: 5px;
+}
+
+.pagination a:hover{
+    background-color: azure;
+    color: black;
 }
