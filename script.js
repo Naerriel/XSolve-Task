@@ -40,7 +40,7 @@ const renderPagination = function(numOfElements) {
   const numOfPages = Math.ceil(numOfElements / maxResultsOnPage);
   let code = "<a>&laquo</a>";
   for(let pageNum = 1; pageNum <= numOfPages; pageNum++){
-    code += `<a>${pageNum}</a>`;
+    code += `<a class="pageButton" id='page${pageNum}'>${pageNum}</a>`;
   }
   code += "<a>&raquo</a>";
   $(".pagination").html(code);
@@ -51,7 +51,16 @@ const render = function(filteredData) {
   renderPagination(filteredData.length)
 }
 
+const handlePaginationButtons = function() {
+  $(".pagination").on("click", ".pageButton", function() {
+    const pageNr = this.id.replace('page', '');
+    renderPage(MyData, pageNr);
+    //Replace to filtered data!
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   render(MyData);
+  handlePaginationButtons();
 });
 
