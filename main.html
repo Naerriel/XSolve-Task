@@ -4,22 +4,22 @@
         <meta charset="UTF-8">
         <title>Zadanie - Karol Górski</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="data.js"></script>
         <script src="main.js"></script>
         <script src="view.js"></script>
         <script src="controller.js"></script>
-        <script src="data.js"></script>
         <link rel="stylesheet" href="styles.css" title="external style sheet">
     </head>
     <body>
         <header>
             <input class="filter" placeholder="Filter">
-            <select class="select-attribute">
-                <option val="id">Id</option>
-                <option val="firstName">First Name</option>
-                <option val="lastName">Last Name</option>
-                <option val="dateOfBirth">Date of Birth</option>
-                <option val="company">Company</option>
-                <option val="note">Note</option>
+            <select class="select-attribute" default="firstName">
+                <option value="id">Id</option>
+                <option value="firstName">First Name</option>
+                <option value="lastName">Last Name</option>
+                <option value="dateOfBirth">Date of Birth</option>
+                <option value="company">Company</option>
+                <option value="note">Note</option>
             <select>
             <button class="hire-me-button">Hire me!</button>
         </header>

@@ -29,6 +29,7 @@
   }
 
   const renderPage = function(filteredData, pageNum) {
+    console.log(filteredData);
     let code = getTableHeaderHTML();
     for(let nr = (pageNum - 1) * maxResultsOnPage;
       nr < pageNum * maxResultsOnPage && nr < filteredData.length;
