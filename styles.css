@@ -24,3 +24,13 @@ header {
 .hire-me-button{
     vertical-align: center;
 }
+
+.usersDataTable{
+    margin: 50px auto;
+    border-collapse: collapse;
+}
+
+.usersDataTable th, .usersDataTable td{
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
