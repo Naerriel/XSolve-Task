@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+header {
+    overflow: hidden;
+    display: inline-block;
+    min-width: 100%;
+    background-color: grey;
+    height: 40px;
+    vertical-align: center;
+}
+
+.filter{
+    vertical-align: center;
+    margin: 10px;
+}
+
+.select-attribute{
+    vertical-align: center;
+}
+
+.hire-me-button{
+    vertical-align: center;
+}
