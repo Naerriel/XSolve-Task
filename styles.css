@@ -5,14 +5,14 @@
 }
 
 body {
-    background-color: #FBF0DA;
+    background-color: #ecf0f1;
 }
 
 header {
     overflow: hidden;
     display: inline-block;
     min-width: 100%;
-    background-color: #34B961;
+    background-color: #2ecc71;
     height: 40px;
     vertical-align: center;
 }
@@ -24,32 +24,32 @@ header {
 }
 
 .filter{
+    border-style: none;
     vertical-align: center;
-    padding: 3px;
+    padding: 3px 8px;
     margin: 10px;
     border-radius: 5px;
 }
 
 .select-attribute{
+    padding: 3px;
+    border-style: none;
     vertical-align: center;
-    border-radius: 3px;
+    border-radius: 5px;
     background-color: #FFFFFF;
 }
 
-.hire-me-button{
-    vertical-align: center;
+main{
+    text-align: center;
 }
 
 .tableWrapper{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     display: inline-block;
-    padding-bottom: 1.125em;
-    margin-top: 20px;
+    margin: 20px auto;
 }
 
 .pagination{
+    border-radius: 0 0 15px 15px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -60,31 +60,50 @@ header {
 
 .usersDataTable{
     border-collapse: collapse;
-    min-width: 600px;
+    min-width: 960px;
     text-align: center;
 }
 
 th, td{
-    border: 1px solid #66DA8E;
-    padding: 8px;
+    padding: 8px 25px;
     min-width: 40px;
 }
 
 th{
-    background-color: #34B961;
+    color: white;
+    background-color: #2ecc71;
+    font-weight: 1000;
+    letter-spacing: 1.5px;
 }
 
 th:hover{
-    background-color: #109E4B;
+    background-color: #27ae60;
     color: #F0FFFF;
 }
 
+th:first-child{
+    border-radius: 15px 0 0 0;
+}
+
+th:last-child{
+    border-radius: 0 15px 0 0;
+}
+
 tr:nth-child(even){
-    background-color: #F2F2F2;
+    background-color: #f3f7eb;
+}
+
+tr:nth-child(odd){
+    background-color: #e9f2d8;
 }
 
 tr:hover{
-    background-color: #CACACA;
+    background-color: #ebf1c5;
+    text-color: #000000;
+}
+
+td{
+    font-weight: 300;
 }
 
 .idHeader {
@@ -108,13 +127,14 @@ tr:hover{
 }
 
 .pagination{
-    background-color: #34B961;
+    background-color: #2ecc71;
     position: relative;
     height: 30px;
     text-align: center;
 }
 
 .pagination a {
+    color: #F0FFFF;
     width: 30px;
     vertical-align: center;
     margin: 1px;
@@ -124,24 +144,23 @@ tr:hover{
 }
 
 .pagination a:hover{
-    background-color: #109E4B;
+    background-color: #27ae60;
     color: #F0FFFF;
 }
 
 .pagination .active{
-    color: #F0FFFF;
-    background-color: #109E4B;
+    background-color: #27ae60;
 }
 
 .pagination p{
     position: relative;
+    color: #F0FFFF;
     top: 5px;
-    font-weight: bold;
 }
 
 th.activeDown, th.activeUp {
     position: relative;
-    background-color: #109E4B;
+    background-color: #27ae60;
     color: #F0FFFF;
 }
 
