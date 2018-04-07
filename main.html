@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Zadanie - Karol Górski</title>
+        <title>Karol Górski - zadanie</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="data.js"></script>
         <script src="main.js"></script>
@@ -13,16 +13,17 @@
     </head>
     <body>
         <header>
-            <input class="filter" placeholder="Filter">
-            <select class="select-attribute" default="firstName">
-                <option value="id">Id</option>
-                <option value="firstName">First Name</option>
-                <option value="lastName">Last Name</option>
-                <option value="dateOfBirth">Date of Birth</option>
-                <option value="company">Company</option>
-                <option value="note">Note</option>
-            <select>
-            <button class="hire-me-button">Hire me!</button>
+            <div class="headerElements">
+                <input class="filter" placeholder="Filter">
+                <select class="select-attribute">
+                    <option value="id">Id</option>
+                    <option value="firstName" selected="selected">First Name</option>
+                    <option value="lastName">Last Name</option>
+                    <option value="dateOfBirth">Date of Birth</option>
+                    <option value="company">Company</option>
+                    <option value="note">Note</option>
+                <select>
+                </div>
         </header>
         <main>
             <div class="tableWrapper">

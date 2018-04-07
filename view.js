@@ -11,7 +11,7 @@
     for(let attribute in personData){
       rowCode += `<td>${personData[attribute]}</td>`;
     }
-    rowCode += "<tr>";
+    rowCode += "</tr>";
     return rowCode;
   }
 
