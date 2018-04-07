@@ -68,19 +68,22 @@
   App.view.handleSortingByColumns = function(){
     const startSorting = function(className, ascending){
       const attribute = className.replace("Header", "");
+      let comparator;
       if(attribute === "dateOfBirth"){
-        App.sortedData = App.utils
-          .mergeSort(MyData, attribute, App.utils.compareDate);
-      } else {
-        let comparator;
+        if(ascending){
+          comparator = App.utils.beforeDate;
+        } else {
+          comparator = App.utils.afterDate;
+        }
+      } else { //It means that attribute is alphanumeric.
         if(ascending){
           comparator = App.utils.lowerAlfaNum;
         } else {
           comparator = App.utils.biggerAlfaNum;
         }
-        App.sortedData = App.utils
-          .mergeSort(MyData, attribute, comparator);
       }
+      App.sortedData = App.utils
+        .mergeSort(MyData, attribute, comparator);
       startFiltering();
     }
 

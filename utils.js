@@ -24,9 +24,16 @@
     return first <= second;
   }
 
-  App.utils.cmpDate = function(date1, date2){
-    //Code for comparing dates
+  App.utils.beforeDate = function(date1, date2){
+    date1 = moment(date1.replace(" ", "T"), "DD-MM-YYYY HH:mm");
+    date2 = moment(date2.replace(" ", "T"), "DD-MM-YYYY HH:mm");
+    return date2.isAfter(date1);
+  }
 
+  App.utils.afterDate = function(date1, date2){
+    date1 = moment(date1.replace(" ", "T"), "DD-MM-YYYY HH:mm");
+    date2 = moment(date2.replace(" ", "T"), "DD-MM-YYYY HH:mm");
+    return date1.isAfter(date2);
   }
 
   App.utils.biggerAlfaNum = function(first, second){
@@ -58,13 +65,6 @@
   }
 
   App.utils.mergeSort = function(array, attribute, comparator){
-    /*
-     * This function can be optimized by avoiding of passing
-     * arrays as arguments but creating a global array instead and
-     * passing as arguments beginning and ending of interval.
-     *
-     * This solution however decreases code generality and is not needed
-     */
     let rightSide = array.slice();
     if(rightSide.length > 1){
       const halfLength = Math.floor(rightSide.length / 2);
