@@ -2,6 +2,7 @@ App = {};
 
 document.addEventListener('DOMContentLoaded', function() {
   fetch("https://naerriel.github.io/XSolve-Task/data.json", function(text){
+    console.log(text);
     MyData = JSON.parse(text);
     App.sortedData = MyData;
     App.filteredData = MyData;
