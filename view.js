@@ -18,12 +18,12 @@
   const getTableHeaderHTML = function() {
     return `
       <tr>
-          <th>Id</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Date of Birth</th>
-          <th>Company</th>
-          <th>Note</th>
+          <th class="idHeader">Id</th>
+          <th class="firstNameHeader">First Name</th>
+          <th class="lastNameHeader">Last Name</th>
+          <th class="dateOfBirthHeader">Date of Birth</th>
+          <th class="companyHeader">Company</th>
+          <th class="noteHeader">Note</th>
       </tr>
     `;
   }
@@ -61,4 +61,43 @@
       //Replace to filtered data!
     });
   }
+
+  App.view.handleFilteringInput = function(){
+    const startFiltering = function(){
+      const attribute = $(".select-attribute").val();
+      const key = $(".filter").val().toLowerCase();
+      App.filteredData = App.controller.filterData(key, attribute);
+      App.view.render(App.filteredData);
+    }
+    $(".filter").on("input", function(){
+      startFiltering();
+    });
+    $(".select-attribute").on("change", startFiltering);
+  }
+
+  const clearActives = function () {
+    $(".activeDown").removeClass("activeDown");
+    $(".activeUp").removeClass("activeUp");
+  }
+
+  App.view.handleSortingByColumns = function(){
+    const headerClasses = [".idHeader", ".firstNameHeader", ".lastNameHeader",
+      ".dateOfBirthHeader", ".companyHeader", ".noteHeader"];
+    for(let classNr in headerClasses){
+      const className = headerClasses[classNr];
+      const element = $(className);
+      element.click(function(){
+        if(!(element.hasClass("activeUp") || element.hasClass("activeDown"))){
+          clearActives();
+          element.addClass("activeDown");
+        } else if(element.hasClass("activeDown")){
+          element.removeClass("activeDown");
+          element.addClass("activeUp");
+        } else if(element.hasClass("activeUp")){
+          element.removeClass("activeUp");
+        }
+      });
+    }
+  }
+
 })();
