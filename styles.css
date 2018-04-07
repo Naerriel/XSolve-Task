@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+body {
+    background-color: #FBF0DA;
+}
+
 header {
     overflow: hidden;
     display: inline-block;
@@ -45,18 +49,48 @@ header {
 
 .usersDataTable{
     border-collapse: collapse;
-    min-width: 700px;
+    min-width: 600px;
+    text-align: center;
 }
 
-.usersDataTable th, .usersDataTable td{
-    border: 1px solid #dddddd;
+th, td{
+    border: 1px solid #66DA8E;
     padding: 8px;
     min-width: 40px;
 }
 
+th{
+    background-color: #34B961;
+    /*color: #F0FFFF;*/
+}
+
+th:hover{
+    background-color: #109E4B;
+    color: #F0FFFF;
+}
+
+.idHeader {
+    width: 8%;
+}
+
+.firstNameHeader {
+    width: 20%;
+}
+
+.lastNameHeader {
+    width: 20%;
+}
+
+.dateOfBirthHeader {
+    width: 25%;
+}
+
+.noteHeader {
+    width: 12%;
+}
+
 .pagination{
-    background-color: grey;
-    color: white;
+    background-color: #34B961;
     position: relative;
     height: 30px;
     text-align: center;
@@ -64,31 +98,40 @@ header {
 
 .pagination a {
     width: 30px;
-    margin: 5px;
     vertical-align: center;
+    margin: 1px;
     padding: 20px 16px;
     position: relative;
     top: 5px;
 }
 
 .pagination a:hover{
-    background-color: azure;
-    color: black;
+    background-color: #109E4B;
+    color: #F0FFFF;
 }
 
-.active {
+.pagination .active{
+    color: #F0FFFF;
+    background-color: #109E4B;
 }
 
-.activeDown, .activeUp {
+.pagination p{
     position: relative;
-    background-color: pink;
+    top: 5px;
+    font-weight: bold;
+}
+
+th.activeDown, th.activeUp {
+    position: relative;
+    background-color: #109E4B;
+    color: #F0FFFF;
 }
 
 .activeDown::after{
     content: "";
-    border-top: 10px solid black;
-    border-right: 5px solid transparent;
-    border-left: 5px solid transparent;
+    border-top: 8px solid black;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
     position: absolute;
     top: 12px;
     right: 3px;
@@ -96,11 +139,10 @@ header {
 
 .activeUp::after{
     content: "";
-    border-bottom: 10px solid black;
-    border-right: 5px solid transparent;
-    border-left: 5px solid transparent;
+    border-bottom: 8px solid black;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
     position: absolute;
     top: 12px;
     right: 3px;
-
 }

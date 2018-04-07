@@ -26,21 +26,29 @@
   }
 
   const renderPagination = function(numOfElements) {
-    const numOfPages = Math.ceil(numOfElements / maxResultsOnPage);
     let code = "";
-    for(let pageNum = 1; pageNum <= numOfPages; pageNum++){
-      code += `<a class="pageButton" id='page${pageNum}'>${pageNum}</a>`;
+    if(numOfElements == 0){
+      console.log("here");
+      code += `<p>No results found.</p>`;
+    } else {
+      const numOfPages = Math.ceil(numOfElements / maxResultsOnPage);
+      for(let pageNum = 1; pageNum <= numOfPages; pageNum++){
+        code += `<a class="pageButton" id='page${pageNum}'>${pageNum}</a>`;
+      }
     }
     $(".pagination").html(code);
+    $("#page1").addClass("active");
   }
 
   App.view.render = function(filteredData) {
     renderPage(filteredData, 1);
-    renderPagination(filteredData.length)
+    renderPagination(filteredData.length);
   }
 
   App.view.handlePaginationButtons = function() {
     $(".pagination").on("click", ".pageButton", function() {
+      $(".active").removeClass("active");
+      $(`#${this.id}`).addClass("active");
       const pageNr = this.id.replace('page', '');
       renderPage(App.filteredData, pageNr);
     });
@@ -60,7 +68,7 @@
     $(".select-attribute").on("change", startFiltering);
   }
 
-  const clearActives = function () {
+  const clearHeaderActives = function () {
     $(".activeDown").removeClass("activeDown");
     $(".activeUp").removeClass("activeUp");
   }
@@ -91,15 +99,15 @@
       const element = $(e.target);
       const className = element.attr('class');
       if(!(element.hasClass("activeUp") || element.hasClass("activeDown"))){
-        clearActives();
+        clearHeaderActives();
         startSorting(className, true);
         element.addClass("activeDown");
       } else if(element.hasClass("activeDown")){
-        clearActives();
+        clearHeaderActives();
         startSorting(className.replace(" activeDown", "") , false);
         element.addClass("activeUp");
       } else if(element.hasClass("activeUp")){
-        clearActives();
+        clearHeaderActives();
         App.sortedData = MyData;
         startFiltering();
       }
