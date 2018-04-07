@@ -15,37 +15,22 @@
     return rowCode;
   }
 
-  const getTableHeaderHTML = function() {
-    return `
-      <tr>
-          <th class="idHeader">Id</th>
-          <th class="firstNameHeader">First Name</th>
-          <th class="lastNameHeader">Last Name</th>
-          <th class="dateOfBirthHeader">Date of Birth</th>
-          <th class="companyHeader">Company</th>
-          <th class="noteHeader">Note</th>
-      </tr>
-    `;
-  }
-
   const renderPage = function(filteredData, pageNum) {
-    console.log(filteredData);
-    let code = getTableHeaderHTML();
+    let code = "";
     for(let nr = (pageNum - 1) * maxResultsOnPage;
       nr < pageNum * maxResultsOnPage && nr < filteredData.length;
       nr++){
       code += getTableRowHTML(filteredData[nr]);
     }
-    $(".usersDataTable").html(code);
+    $(".usersDataBody").html(code);
   }
 
   const renderPagination = function(numOfElements) {
     const numOfPages = Math.ceil(numOfElements / maxResultsOnPage);
-    let code = "<a>&laquo</a>";
+    let code = "";
     for(let pageNum = 1; pageNum <= numOfPages; pageNum++){
       code += `<a class="pageButton" id='page${pageNum}'>${pageNum}</a>`;
     }
-    code += "<a>&raquo</a>";
     $(".pagination").html(code);
   }
 
@@ -57,18 +42,18 @@
   App.view.handlePaginationButtons = function() {
     $(".pagination").on("click", ".pageButton", function() {
       const pageNr = this.id.replace('page', '');
-      renderPage(MyData, pageNr);
-      //Replace to filtered data!
+      renderPage(App.filteredData, pageNr);
     });
   }
 
+  const startFiltering = function(){
+    const attribute = $(".select-attribute").val();
+    const key = $(".filter").val().toLowerCase();
+    App.filteredData = App.utils.filterData(key, attribute);
+    App.view.render(App.filteredData);
+  }
+
   App.view.handleFilteringInput = function(){
-    const startFiltering = function(){
-      const attribute = $(".select-attribute").val();
-      const key = $(".filter").val().toLowerCase();
-      App.filteredData = App.controller.filterData(key, attribute);
-      App.view.render(App.filteredData);
-    }
     $(".filter").on("input", function(){
       startFiltering();
     });
@@ -81,23 +66,40 @@
   }
 
   App.view.handleSortingByColumns = function(){
-    const headerClasses = [".idHeader", ".firstNameHeader", ".lastNameHeader",
-      ".dateOfBirthHeader", ".companyHeader", ".noteHeader"];
-    for(let classNr in headerClasses){
-      const className = headerClasses[classNr];
-      const element = $(className);
-      element.click(function(){
-        if(!(element.hasClass("activeUp") || element.hasClass("activeDown"))){
-          clearActives();
-          element.addClass("activeDown");
-        } else if(element.hasClass("activeDown")){
-          element.removeClass("activeDown");
-          element.addClass("activeUp");
-        } else if(element.hasClass("activeUp")){
-          element.removeClass("activeUp");
+    const startSorting = function(className, ascending){
+      const attribute = className.replace("Header", "");
+      if(attribute === "dateOfBirth"){
+        App.sortedData = App.utils
+          .mergeSort(MyData, attribute, App.utils.compareDate);
+      } else {
+        let comparator;
+        if(ascending){
+          comparator = App.utils.lowerAlfaNum;
+        } else {
+          comparator = App.utils.biggerAlfaNum;
         }
-      });
+        App.sortedData = App.utils
+          .mergeSort(MyData, attribute, comparator);
+      }
+      startFiltering();
     }
-  }
 
+    $(".usersDataTable").on("click", "th", function(e){
+      const element = $(e.target);
+      const className = element.attr('class');
+      if(!(element.hasClass("activeUp") || element.hasClass("activeDown"))){
+        clearActives();
+        startSorting(className, true);
+        element.addClass("activeDown");
+      } else if(element.hasClass("activeDown")){
+        clearActives();
+        startSorting(className.replace(" activeDown", "") , false);
+        element.addClass("activeUp");
+      } else if(element.hasClass("activeUp")){
+        clearActives();
+        App.sortedData = MyData;
+        startFiltering();
+      }
+    });
+  }
 })();

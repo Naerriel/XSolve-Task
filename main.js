@@ -1,4 +1,5 @@
 App = {};
+App.sortedData = MyData;
 App.filteredData = MyData;
 
 document.addEventListener('DOMContentLoaded', function() {

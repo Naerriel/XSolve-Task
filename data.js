@@ -1,4 +1,4 @@
-MyData = [
+const MyData = [
   {
     "id": 1,
     "firstName": "Jan",
