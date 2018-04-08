@@ -1,22 +1,19 @@
 (function(){
   App.utils = {};
 
-  App.utils.filterData = function(key, attribute){
+  App.utils.filterData = function(data, key, attribute){
     key = key.toLowerCase();
-    let resultData = [];
-    for(let nr in App.sortedData){
-      if(App.sortedData[nr][attribute].toString().toLowerCase().includes(key)){
-        resultData.push(App.sortedData[nr]);
+    let result = [];
+    for(let it in data){
+      if(data[it][attribute].toString().toLowerCase().includes(key)){
+        result.push(data[it]);
       }
     }
-    return resultData;
+    return result;
   }
 
   App.utils.lowerAlfaNum = function(first, second){
-    /*
-     * If arguments are numbers they will be compared as numbers
-     *
-     * If they are strings, they will be compared as strings,
+    /* If arguments are strings, they will be compared as strings,
      * lexicographically in complexity O(maxLength)
      * It can be implemented in O(log(maxLength)) with
      * creating hashes once in O(maxlength).
@@ -65,13 +62,15 @@
   }
 
   App.utils.mergeSort = function(array, attribute, comparator){
-    let rightSide = array.slice();
-    if(rightSide.length > 1){
-      const halfLength = Math.floor(rightSide.length / 2);
+
+    if(array.length > 1){
+      const halfLength = Math.floor(array.length / 2);
+      let rightSide = array.slice();
       let leftSide = rightSide.splice(0, halfLength);
+
       leftSide = App.utils.mergeSort(leftSide, attribute, comparator);
       rightSide = App.utils.mergeSort(rightSide, attribute, comparator);
       return merge(leftSide, rightSide, attribute, comparator);
-    } else return rightSide;
+    } else return array;
   }
 })();

@@ -32,11 +32,11 @@ header {
 }
 
 .select-attribute{
-    padding: 3px;
+    padding: 2px;
     border-style: none;
     vertical-align: center;
     border-radius: 5px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 }
 
 main{
@@ -70,7 +70,7 @@ th, td{
 }
 
 th{
-    color: white;
+    color: #ffffff;
     background-color: #2ecc71;
     font-weight: 1000;
     letter-spacing: 1.5px;
@@ -78,7 +78,6 @@ th{
 
 th:hover{
     background-color: #27ae60;
-    color: #F0FFFF;
 }
 
 th:first-child{
@@ -99,7 +98,6 @@ tr:nth-child(odd){
 
 tr:hover{
     background-color: #ebf1c5;
-    text-color: #000000;
 }
 
 td{
@@ -134,7 +132,8 @@ td{
 }
 
 .pagination a {
-    color: #F0FFFF;
+    color: #ffffff;
+    cursor: pointer;
     width: 30px;
     vertical-align: center;
     margin: 1px;
@@ -145,7 +144,6 @@ td{
 
 .pagination a:hover{
     background-color: #27ae60;
-    color: #F0FFFF;
 }
 
 .pagination .active{
@@ -154,7 +152,7 @@ td{
 
 .pagination p{
     position: relative;
-    color: #F0FFFF;
+    color: #ffffff;
     top: 5px;
 }
 

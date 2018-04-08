@@ -1,10 +1,7 @@
 (function(){
   App.view = {};
   const maxResultsOnPage = 5;
-
-  const makeCell = function(text){
-    return `<td>${text}</td>`;
-  }
+  const defaultPage = 1;
 
   const getTableRowHTML = function(personData) {
     let rowCode = "<tr>";
@@ -15,12 +12,11 @@
     return rowCode;
   }
 
-  const renderPage = function(filteredData, pageNum) {
+  const renderPage = function(data, pageNum) {
     let code = "";
     for(let nr = (pageNum - 1) * maxResultsOnPage;
-      nr < pageNum * maxResultsOnPage && nr < filteredData.length;
-      nr++){
-      code += getTableRowHTML(filteredData[nr]);
+      nr < pageNum * maxResultsOnPage && nr < data.length; nr++){
+      code += getTableRowHTML(data[nr]);
     }
     $(".usersDataBody").html(code);
   }
@@ -28,7 +24,6 @@
   const renderPagination = function(numOfElements) {
     let code = "";
     if(numOfElements == 0){
-      console.log("here");
       code += `<p>No results found.</p>`;
     } else {
       const numOfPages = Math.ceil(numOfElements / maxResultsOnPage);
@@ -41,7 +36,7 @@
   }
 
   App.view.render = function(filteredData) {
-    renderPage(filteredData, 1);
+    renderPage(filteredData, defaultPage);
     renderPagination(filteredData.length);
   }
 
@@ -57,7 +52,7 @@
   const startFiltering = function(){
     const attribute = $(".select-attribute").val();
     const key = $(".filter").val().toLowerCase();
-    App.filteredData = App.utils.filterData(key, attribute);
+    App.filteredData = App.utils.filterData(App.sortedData, key, attribute);
     App.view.render(App.filteredData);
   }
 
