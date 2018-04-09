@@ -1,8 +1,7 @@
 App = {};
 
 document.addEventListener('DOMContentLoaded', function() {
-  fetch("https://naerriel.github.io/XSolve-Task/data.json")
-    .then(response => response.json())
+  App.repository.getData()
     .then(json => {
       MyData = json;
       App.filteredData = MyData;
