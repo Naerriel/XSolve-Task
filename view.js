@@ -50,9 +50,15 @@
   }
 
   const startFiltering = function(){
-    const attribute = $(".select-attribute").val();
     const key = $(".filter").val().toLowerCase();
-    App.filteredData = App.utils.filterData(App.sortedData, key, attribute);
+    App.filteredData = App.sortedData.filter(personData => {
+      for(let attribute in personData){
+        if(personData[attribute].toString().toLowerCase().includes(key)){
+          return true;
+        }
+      }
+      return false;
+    });
     App.view.render(App.filteredData);
   }
 

@@ -17,26 +17,15 @@ header {
     vertical-align: center;
 }
 
-.headerElements {
+.filter{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-}
-
-.filter{
     border-style: none;
     vertical-align: center;
     padding: 3px 8px;
     margin: 10px;
     border-radius: 5px;
-}
-
-.select-attribute{
-    padding: 2px;
-    border-style: none;
-    vertical-align: center;
-    border-radius: 5px;
-    background-color: #ffffff;
 }
 
 main{

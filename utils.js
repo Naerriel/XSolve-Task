@@ -1,17 +1,6 @@
 (function(){
   App.utils = {};
 
-  App.utils.filterData = function(data, key, attribute){
-    key = key.toLowerCase();
-    let result = [];
-    for(let it in data){
-      if(data[it][attribute].toString().toLowerCase().includes(key)){
-        result.push(data[it]);
-      }
-    }
-    return result;
-  }
-
   App.utils.lowerAlfaNum = function(first, second){
     /* If arguments are strings, they will be compared as strings,
      * lexicographically in complexity O(maxLength)
