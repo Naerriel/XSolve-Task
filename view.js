@@ -63,9 +63,7 @@
   }
 
   App.view.handleFilteringInput = function(){
-    $(".filter").on("input", function(){
-      startFiltering();
-    });
+    $(".filter").on("input", startFiltering);
     $(".select-attribute").on("change", startFiltering);
   }
 
@@ -77,12 +75,12 @@
   App.view.handleSortingByColumns = function(){
     const startSorting = function(className, ascending){
       const attribute = className.replace("Header", "");
-      let comparator;
 
       const convertToDate = function(text){
         return moment(text.replace(" ", "T"), "DD-MM-YYYY HH:mm");
       }
 
+      let comparator;
       if(attribute === "dateOfBirth"){
         if(ascending){
           comparator = function(first, second){
@@ -106,7 +104,7 @@
           return first > second;
         }
       }
-      App.sortedData = App.utils.mergeSort(MyData, attribute, comparator);
+      App.sortedData = App.utils.mergeSort(MainData, attribute, comparator);
     }
 
     $(".usersDataTable").on("click", "th", function(e){
@@ -122,7 +120,7 @@
         element.addClass("activeUp");
       } else if(element.hasClass("activeUp")){
         clearHeaderActives();
-        App.sortedData = MyData;
+        App.sortedData = MainData;
       }
       startFiltering();
     });
