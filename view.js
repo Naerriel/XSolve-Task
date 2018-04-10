@@ -78,22 +78,35 @@
     const startSorting = function(className, ascending){
       const attribute = className.replace("Header", "");
       let comparator;
+
+      const convertToDate = function(text){
+        return moment(text.replace(" ", "T"), "DD-MM-YYYY HH:mm");
+      }
+
       if(attribute === "dateOfBirth"){
         if(ascending){
-          comparator = App.utils.beforeDate;
+          comparator = function(first, second){
+            first = convertToDate(first);
+            second = convertToDate(second);
+            return first <= second;
+          }
         } else {
-          comparator = App.utils.afterDate;
+          comparator = function(first, second){
+            first = convertToDate(first);
+            second = convertToDate(second);
+            return first > second;
+          }
         }
-      } else { //It means that attribute is alphanumeric.
-        if(ascending){
-          comparator = App.utils.lowerAlfaNum;
-        } else {
-          comparator = App.utils.biggerAlfaNum;
+      } else if(ascending){
+        comparator = function(first, second){
+          return first <= second;
+        }
+      } else {
+        comparator = function(first, second){
+          return first > second;
         }
       }
-      App.sortedData = App.utils
-        .mergeSort(MyData, attribute, comparator);
-      startFiltering();
+      App.sortedData = App.utils.mergeSort(MyData, attribute, comparator);
     }
 
     $(".usersDataTable").on("click", "th", function(e){
@@ -110,8 +123,8 @@
       } else if(element.hasClass("activeUp")){
         clearHeaderActives();
         App.sortedData = MyData;
-        startFiltering();
       }
+      startFiltering();
     });
   }
 })();

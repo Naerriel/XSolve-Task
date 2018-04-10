@@ -1,31 +1,6 @@
 (function(){
   App.utils = {};
 
-  App.utils.lowerAlfaNum = function(first, second){
-    /* If arguments are strings, they will be compared as strings,
-     * lexicographically in complexity O(maxLength)
-     * It can be implemented in O(log(maxLength)) with
-     * creating hashes once in O(maxlength).
-     */
-    return first <= second;
-  }
-
-  App.utils.beforeDate = function(date1, date2){
-    date1 = moment(date1.replace(" ", "T"), "DD-MM-YYYY HH:mm");
-    date2 = moment(date2.replace(" ", "T"), "DD-MM-YYYY HH:mm");
-    return date2.isAfter(date1);
-  }
-
-  App.utils.afterDate = function(date1, date2){
-    date1 = moment(date1.replace(" ", "T"), "DD-MM-YYYY HH:mm");
-    date2 = moment(date2.replace(" ", "T"), "DD-MM-YYYY HH:mm");
-    return date1.isAfter(date2);
-  }
-
-  App.utils.biggerAlfaNum = function(first, second){
-    return first > second;
-  }
-
   const merge = function(leftSide, rightSide, attribute, comparator){
     let result = [];
     let leftIt = 0;
@@ -60,6 +35,8 @@
       leftSide = App.utils.mergeSort(leftSide, attribute, comparator);
       rightSide = App.utils.mergeSort(rightSide, attribute, comparator);
       return merge(leftSide, rightSide, attribute, comparator);
-    } else return array;
+    } else {
+      return array;
+    }
   }
 })();
