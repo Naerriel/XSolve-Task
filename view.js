@@ -15,7 +15,7 @@
   const renderPage = function(data, pageNum) {
     let code = "";
     for(let nr = (pageNum - 1) * maxResultsOnPage;
-      nr < pageNum * maxResultsOnPage && nr < data.length; nr++){
+        nr < pageNum * maxResultsOnPage && nr < data.length; nr++){
       code += getTableRowHTML(data[nr]);
     }
     $(".usersDataBody").html(code);
@@ -49,7 +49,7 @@
     });
   }
 
-  const startFiltering = function(){
+  const startFiltering = function() {
     const key = $(".filter").val().toLowerCase();
     App.filteredData = App.sortedData.filter(personData => {
       for(let attribute in personData){
@@ -64,7 +64,6 @@
 
   App.view.handleFilteringInput = function(){
     $(".filter").on("input", startFiltering);
-    $(".select-attribute").on("change", startFiltering);
   }
 
   const clearHeaderActives = function () {
@@ -84,27 +83,27 @@
       if(attribute === "dateOfBirth"){
         if(ascending){
           comparator = function(first, second){
-            first = convertToDate(first);
-            second = convertToDate(second);
+            first = convertToDate(first[attribute]);
+            second = convertToDate(second[attribute]);
             return first <= second;
           }
         } else {
           comparator = function(first, second){
-            first = convertToDate(first);
-            second = convertToDate(second);
+            first = convertToDate(first[attribute]);
+            second = convertToDate(second[attribute]);
             return first > second;
           }
         }
       } else if(ascending){
         comparator = function(first, second){
-          return first <= second;
+          return first[attribute] <= second[attribute];
         }
       } else {
         comparator = function(first, second){
-          return first > second;
+          return first[attribute] > second[attribute];
         }
       }
-      App.sortedData = App.utils.mergeSort(MainData, attribute, comparator);
+      App.sortedData = App.utils.mergeSort(App.MainData, comparator);
     }
 
     $(".usersDataTable").on("click", "th", function(e){
@@ -120,7 +119,7 @@
         element.addClass("activeUp");
       } else if(element.hasClass("activeUp")){
         clearHeaderActives();
-        App.sortedData = MainData;
+        App.sortedData = App.MainData;
       }
       startFiltering();
     });
